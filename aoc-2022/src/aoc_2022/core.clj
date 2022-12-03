@@ -21,13 +21,16 @@
 
 (def day-one-input (str/split (read-file "day1.txt") #"\n\n"))
 
+(defn sum-of-coll [coll]
+  (map #(sum (read-numbers (str/split-lines %)))
+       coll))
+
 (defn solve-aoc-1 []
-  (apply max
-         (map #(sum (read-numbers (str/split-lines %)))
-              day-one-input)))
+  (apply max (sum-of-coll day-one-input)))
 
 (defn solve-aoc-1-2 []
-  (sum (take 3
-             (sort >
-                   (map #(sum (read-numbers (str/split-lines %)))
-                        day-one-input)))))
+  (sum (take 3 (sort > (sum-of-coll day-one-input)))))
+
+;; Day 2
+
+
